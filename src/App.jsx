@@ -4,6 +4,15 @@ import { Counter } from "./components/Counter";
 import { NumberInput } from "./components/NumberInput";
 import { Light } from "./components/Light";
 
+const colors = [
+  "blue",
+  "green",
+  "orange",
+  "pink",
+  "red",
+  "yellow",
+];
+
 // app state management
 const defaultState = { rows: 0, columns: 0 };
 let size, setSize;
@@ -24,14 +33,15 @@ function increment({target}) {
   setSize(Object.create(size));
 }
 const stateSetters = { decrement, increment };
-
 const lights = [];
+
 export default function App() {
   [size, setSize] = useState(defaultState);
   const count = size.rows * size.columns;
 
   for (let i = 0; i < count; i++) {
-    lights[i] = (<Light color={"yellow"} />);
+    const ci = Math.floor(Math.random() * colors.length);
+    lights[i] = (<Light color={colors[ci]} />);
   }
   lights.length = count;
 

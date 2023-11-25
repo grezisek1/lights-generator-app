@@ -17,6 +17,6 @@
 }
 .lights {
     display: grid;
-    grid-template-columns: repeat(9, minmax(1px, 1fr));
+    grid-template-columns: repeat(var(--cols), minmax(1px, 109px));
     margin-top: 50px;
 }

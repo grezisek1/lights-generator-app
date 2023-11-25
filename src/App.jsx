@@ -15,24 +15,36 @@ function decrement({target}) {
   setSize(Object.create(size));
 }
 function increment({target}) {
+  if (target.name == "columns") {
+    if (size.columns > 8) {
+      return;
+    }
+  }
   size[target.name]++;
   setSize(Object.create(size));
 }
 const stateSetters = { decrement, increment };
 
-
+const lights = [];
 export default function App() {
   [size, setSize] = useState(defaultState);
+  const count = size.rows * size.columns;
+
+  for (let i = 0; i < count; i++) {
+    lights[i] = (<Light color={"yellow"} />);
+  }
+  lights.length = count;
+
   return <>
     <header className={"header"}>
-      <Counter count={size.rows * size.columns} />
+      <Counter count={count} />
       <div className={"controls"}>
         <NumberInput label="rows" name="rows" value={size.rows} {...stateSetters} />
         <NumberInput label="columns" name="columns" value={size.columns} {...stateSetters} />
       </div>
     </header>
-    <main className={"lights"}>
-      <Light color={"yellow"} />
+    <main className={"lights"} style={{"--cols": size.columns}}>
+      {lights}
     </main>
   </>;
 }

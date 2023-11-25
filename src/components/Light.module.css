@@ -1,0 +1,13 @@
+.light {
+    all: unset;
+    display: block;
+    width: 109px;
+    height: 109px;
+
+    &[data-state=""] {
+        background: url("../../public/images/light-off.svg");
+    }
+    &[data-state="yellow"] {
+        background: url("../../public/images/light-yellow.svg");
+    }
+}
